@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="deliveryModel.Store" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 5.7.21" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="package">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="dest_city" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="sender_city" Type="varchar" MaxLength="255" />
+          <Property Name="tracking" Type="int" Nullable="false" />
+          <Property Name="recv_id" Type="int" />
+          <Property Name="sender_id" Type="int" />
+        </EntityType>
+        <EntityType Name="package_tracking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="255" />
+          <Property Name="moment" Type="datetime" Precision="0" />
+          <Property Name="package_id" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin" Type="int" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="deliveryModelStoreContainer">
+          <EntitySet Name="package" EntityType="Self.package" Schema="delivery" store:Type="Tables" />
+          <EntitySet Name="package_tracking" EntityType="Self.package_tracking" Schema="delivery" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="delivery" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="deliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="package">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dest_city" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="sender_city" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="tracking" Type="Int32" Nullable="false" />
+          <Property Name="recv_id" Type="Int32" />
+          <Property Name="sender_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="package_tracking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="moment" Type="DateTime" />
+          <Property Name="package_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="deliveryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="packages" EntityType="Self.package" />
+          <EntitySet Name="package_tracking" EntityType="Self.package_tracking" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="deliveryModelStoreContainer" CdmEntityContainer="deliveryEntities">
+          <EntitySetMapping Name="packages">
+            <EntityTypeMapping TypeName="deliveryModel.package">
+              <MappingFragment StoreEntitySet="package">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dest_city" ColumnName="dest_city" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sender_city" ColumnName="sender_city" />
+                <ScalarProperty Name="tracking" ColumnName="tracking" />
+                <ScalarProperty Name="recv_id" ColumnName="recv_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="package_tracking">
+            <EntityTypeMapping TypeName="deliveryModel.package_tracking">
+              <MappingFragment StoreEntitySet="package_tracking">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="moment" ColumnName="moment" />
+                <ScalarProperty Name="package_id" ColumnName="package_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="deliveryModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ds.entity.PackageTracking" table="package_tracking">
+        <meta attribute="class-description">
+            This class contains the package tracking details.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+        <property name="city" column="city" type="java.lang.String" />
+        <property name="moment" column="moment" type="java.util.Date" />
+        <many-to-one name="pack" column="package_id"
+                     class="com.ds.entity.Package" not-null="true" />
+    </class>
+</hibernate-mapping>

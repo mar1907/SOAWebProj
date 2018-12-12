@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ds.entity.Package" table="package">
+        <meta attribute="class-description">
+            This class contains the package details.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+        <property name="description" column="description" type="java.lang.String" />
+        <property name="name" column="name" type="java.lang.String" />
+        <property name="senderCity" column="sender_city" type="java.lang.String" />
+        <property name="destCity" column="dest_city" type="java.lang.String" />
+        <property name="tracking" column="tracking" type="java.lang.Integer" />
+        <many-to-one name="sender" column="sender_id"
+                     class="com.ds.entity.User" not-null="true" />
+        <many-to-one name="receiver" column="recv_id"
+                     class="com.ds.entity.User" not-null="true" />
+    </class>
+</hibernate-mapping>
